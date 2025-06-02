@@ -1,14 +1,14 @@
 FROM debian:11
 #FROM ubuntu:latest
 
-MAINTAINER	Zeleza
+LABEL maintainer="Zeleza"
 
 ARG USER="${USER}"
 #ARG UID="${U_ID}"
 #ARG GID="${G_ID}"
 #ARG GROUP="${GROUP}"
 ARG APP_NAME="${APP_NAME}"
-ARG GPT_TOKEN="${GPT_TOKEN}"
+#ARG GPT_TOKEN="${GPT_TOKEN}"
 
 ARG DEBIAN_FRONTEND=noninteractive
 
@@ -16,7 +16,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 #        libc6:i386 libncurses5:i386 libstdc++6:i386 \
 #        build-essential subversion libncurses5-dev zlib1g-dev gawk  \
 #        gcc-multilib flex git-core gettext libssl-dev \
-#        rsync unzip wget file nano iputils-ping jq curl \
+#        rsync unzip wget file nano iputils-ping jq curl git \
 #        python2 python3 python3-dev python3-distutils-extra \
 #&& groupadd --gid ${GID} ${USER}  \
 #&& useradd --create-home --system --uid ${UID} --gid ${GID} --shell /bin/bash ${USER}  \
@@ -44,7 +44,7 @@ RUN pip3 install -U pip pyelftools pyOpenSSL service_identity \
     && useradd -c "Kotomka Entware Builder" -m -d /home/${USER} -G sudo -s /bin/bash ${USER}
 
 USER ${USER}
-ENV HOME /home/${USER}
+ENV HOME=/home/${USER}
 WORKDIR ${HOME}
 
 ARG DC_APPS_ROOT="${HOME}${APPS_ROOT}"
